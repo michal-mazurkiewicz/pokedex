@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import { useAppSelector } from './store/hooks';
 import { selectAppState } from './store/reducers/app-reducer';
 
