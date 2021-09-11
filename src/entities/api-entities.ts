@@ -49,6 +49,7 @@ export interface TypeObject{
 
 export interface PokemonDTO{
     name: string
+    id: number
     abilities: Array<Ability>
     base_experience: number
     forms: Array<Form>

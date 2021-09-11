@@ -6,7 +6,7 @@ import { AppThunk } from "../store";
 
 
 export const getInitialData = (): AppThunk<Promise<void>> => async (dispatch) => {
-    const pokemonData: PokemonsDTO = await getPokemons({ limit: 2000 })
+    const pokemonData: PokemonsDTO = await getPokemons({ limit: 898 })
     dispatch(setPokemons(pokemonData))
 }
 
