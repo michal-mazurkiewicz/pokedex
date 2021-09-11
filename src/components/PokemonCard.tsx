@@ -18,20 +18,20 @@ export function PokemonCard(props: PokemonProps) {
     const { id, name, url } = props;
 
     useEffect(() => {
+        setViewState(ViewState.LOADING)
         getPokemon(url).then((res: PokemonDTO) => {
             setPokemon(res);
             setVariant(mapTypeToWariant(res?.types[0].type.name));
             setViewState(ViewState.SUCCESS)
         });
-    }, []);
+    }, [id, name, url]);
 
     return (
         <Card
             bg={type}
             key={id}
-            text={type === "light" ? "dark" : "white"}
-            style={{ width: "12rem", height: "19rem" }}
-            className="mb-2"
+            text={"white"}
+            className="mb-2 poke-card"
         >
             {viewState === ViewState.LOADING ? (
                 <Spinner animation="border" variant="primary" />
@@ -43,7 +43,7 @@ export function PokemonCard(props: PokemonProps) {
                         src={pokemon?.sprites.front_default}
                     ></Card.Img>
                     <Card.Header>
-                        <Card.Title>{name.toUpperCase()}</Card.Title>
+                        <Card.Title>{name.toUpperCase()} {pokemon?.types[0].type.name}</Card.Title>
                     </Card.Header>
                     <Card.Body>
                     <Button variant={type === "light" ? "dark" : "white"}>Details</Button>

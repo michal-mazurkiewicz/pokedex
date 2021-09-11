@@ -4,17 +4,20 @@ import { selectPokemonState } from "../store/reducers/pokemon-reducer";
 import { PokemonCard } from "./PokemonCard";
 
 export function Pokedex() {
-    
-    const { results } = useAppSelector(selectPokemonState);
+    const { results, limit, offset } = useAppSelector(selectPokemonState);
     return (
         <Container>
             <Row>
-            {results.map((result, id) => (
-                <Col key={id}>
-                <PokemonCard id={id} name={result.name}  url={result.url}/>
-                </Col>
-            ))}
+                {results.map((result, id) => {
+                    if (id >= offset && id < offset + limit) {
+                        return (
+                            <Col key={id}>
+                                <PokemonCard id={id} name={result.name} url={result.url} />
+                            </Col>
+                        );
+                    }
+                })}
             </Row>
         </Container>
-    )
+    );
 }

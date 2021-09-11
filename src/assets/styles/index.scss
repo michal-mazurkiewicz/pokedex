@@ -1,8 +1,46 @@
-@import '~bootstrap/scss/bootstrap.scss';
+.poke-card{
+   width: 12rem; 
+   height: 19rem; 
+};
 
-.container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl{
-  padding: 0;
-}
+.poke-card:hover{
+  width: 12.3rem;
+  height: 19.1rem;
+};
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+$normal:  #FDEDEC;
+$dragon:  #922B21;
+$steel:   #808B96;
+$fairy:   #da28acad;
+$poison:  #8E44AD;
+$ground:  #E59866;
+$flying:  #FDEBD0;
+$psychic: #CCCCFF;
+$bug:     #0a6e70;
+$rock:    #FFBF00;
+
+$poke-colors:(
+  "normal":     $normal,
+  "dragon":     $dragon,
+  "steel":      $steel,
+  "fairy":      $fairy,
+  "poison":     $poison,
+  "ground":     $ground,
+  "flying":     $flying,
+  "psychic":    $psychic,
+  "bug":        $bug,
+  "rock":       $rock,
+); 
+
+$theme-colors:map-merge($theme-colors, $poke-colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$utilities-colors: map-merge($utilities-colors, $theme-colors-rgb);
+$utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
+
 
 body {
   margin: 0;
@@ -16,4 +54,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+.container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl{
+  padding: 0;
 }

@@ -20,15 +20,18 @@ export const pokemonSlice: Slice<PokemonState> = createSlice({
   initialState,
   reducers: {
     setPokemons: (state: PokemonState, action: PayloadAction<PokemonsDTO>) => {
-      const {results, count, next, previous} = action.payload
+      const {results, next, previous} = action.payload
       state.results = results
-      state.count = count
+      state.count = results.length
       state.next = next
       state.previous = previous
     },
     setPage: (state: PokemonState, action: PayloadAction<ChangePageParams>) => {
       state.currentPage = action.payload.newPage
       state.offset = action.payload.offset
+    },
+    setLimit: (state: PokemonState, action: PayloadAction<number>) => {
+      state.limit = action.payload
     }
   },
 });

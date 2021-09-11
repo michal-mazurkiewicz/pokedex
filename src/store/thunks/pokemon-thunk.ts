@@ -5,14 +5,11 @@ import { AppThunk } from "../store";
 
 
 
-export const getInitialData = (): AppThunk<Promise<void>> => async (dispatch, getState) => {
-    const { limit } = getState().pokemonReducer
-    const pokemonData: PokemonsDTO = await getPokemons({ limit: limit })
+export const getInitialData = (): AppThunk<Promise<void>> => async (dispatch) => {
+    const pokemonData: PokemonsDTO = await getPokemons({ limit: 2000 })
     dispatch(setPokemons(pokemonData))
 }
 
 export const changePage = (params: ChangePageParams): AppThunk<Promise<void>> => async (dispatch) => {
-    const pokemonData: PokemonsDTO = await getPokemons(params)
     dispatch(setPage(params))
-    dispatch(setPokemons(pokemonData))
 }

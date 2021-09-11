@@ -11,7 +11,7 @@ export function PokePagination() {
   let noPages = Math.ceil(count / limit);
 
   const handleChangePage = async (newPage: number) => {
-    const offset = (newPage - 1) * limit;
+    const offset = newPage === 1 ? 0 : (newPage - 1) * limit;
     const params = { offset, limit, newPage };
     await dispatch(changePage(params));
   };
@@ -34,6 +34,7 @@ export function PokePagination() {
       <Pagination size="sm">
         <Pagination.First disabled={currentPage === 1} onClick={() => handleChangePage(1)}/>
         <Pagination.Prev disabled={currentPage === 1} onClick={() => handleChangePage(currentPage - 1)}/>
+        {currentPage > 3  && items[0]}
         {currentPage > 3 && <Pagination.Ellipsis />}
         {items[currentPage - 3]}
         {items[currentPage - 2]}
@@ -41,6 +42,7 @@ export function PokePagination() {
         {items[currentPage]}
         {items[currentPage + 1]}
         {currentPage + 3 < noPages && <Pagination.Ellipsis />}
+        {currentPage + 3 < noPages && items[noPages - 1]}
         <Pagination.Next disabled={currentPage === noPages} onClick={() => handleChangePage(currentPage + 1)}/>
         <Pagination.Last disabled={currentPage === noPages} onClick={() => handleChangePage(noPages)}/>
       </Pagination>
