@@ -17,7 +17,11 @@ export const pokemonSlice: Slice<PokemonState> = createSlice({
   initialState,
   reducers: {
     setPokemons: (state: PokemonState, action: PayloadAction<PokemonsDTO>) => {
-      state = { ...state, ...action.payload };
+      const {results, count, next, previous} = action.payload
+      state.results = results
+      state.count = count
+      state.next = next
+      state.previous = previous
     },
   },
 });

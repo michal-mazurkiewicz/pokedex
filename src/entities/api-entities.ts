@@ -37,6 +37,16 @@ export interface Move{
     move: {name:string, url:string}
 }
 
+export interface Type{
+    name: string
+    url: string
+}
+
+export interface TypeObject{
+    slot: number
+    type: Type
+}
+
 export interface PokemonDTO{
     name: string
     abilities: Array<Ability>
@@ -46,6 +56,7 @@ export interface PokemonDTO{
     sprites: {
         front_default: string
     }
+    types: Array<TypeObject>
     weight: number
     moves: Array<Move>
 }
