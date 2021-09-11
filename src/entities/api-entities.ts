@@ -60,3 +60,9 @@ export interface PokemonDTO{
     weight: number
     moves: Array<Move>
 }
+
+export interface ChangePageParams{
+    offset: number
+    limit: number
+    newPage: number
+}

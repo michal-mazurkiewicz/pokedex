@@ -1,38 +1,39 @@
 import { useEffect, useState } from "react";
-import { Card, Spinner } from "react-bootstrap";
+import { Button, Card, Spinner } from "react-bootstrap";
 import { getPokemon } from "../api/api";
 import { PokemonDTO } from "../entities/api-entities";
+import { ViewState } from "../entities/app-entities";
 import { mapTypeToWariant } from "../utils/type-variant-mapper";
 
 interface PokemonProps {
     id: number;
     name: string;
-    type: string;
     url: string;
 }
 
 export function PokemonCard(props: PokemonProps) {
-    const [pokemon, setPokemon] = useState<PokemonDTO | null>(null);
-    const [variant, setVariant] = useState<string>("info");
+    const [viewState, setViewState] = useState<ViewState>(ViewState.LOADING)
+    const [pokemon, setPokemon] = useState<PokemonDTO>();
+    const [type, setVariant] = useState<string>('');
     const { id, name, url } = props;
 
     useEffect(() => {
         getPokemon(url).then((res: PokemonDTO) => {
             setPokemon(res);
-            const variant = mapTypeToWariant(pokemon?.types[0].type.name);
-            setVariant(variant);
+            setVariant(mapTypeToWariant(res?.types[0].type.name));
+            setViewState(ViewState.SUCCESS)
         });
     }, []);
 
     return (
         <Card
-            bg={variant}
+            bg={type}
             key={id}
-            text={variant === "light" ? "dark" : "white"}
-            style={{ width: "15rem", height: "23rem" }}
+            text={type === "light" ? "dark" : "white"}
+            style={{ width: "12rem", height: "19rem" }}
             className="mb-2"
         >
-            {!pokemon ? (
+            {viewState === ViewState.LOADING ? (
                 <Spinner animation="border" variant="primary" />
             ) : (
                 <>
@@ -45,9 +46,7 @@ export function PokemonCard(props: PokemonProps) {
                         <Card.Title>{name.toUpperCase()}</Card.Title>
                     </Card.Header>
                     <Card.Body>
-                        <Card.Text>
-                            Some quick example 
-                        </Card.Text>
+                    <Button variant={type === "light" ? "dark" : "white"}>Details</Button>
                     </Card.Body>
                 </>
             )}

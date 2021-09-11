@@ -6,14 +6,12 @@ import { PokemonCard } from "./PokemonCard";
 export function Pokedex() {
     
     const { results } = useAppSelector(selectPokemonState);
-    const type = 'warning'
     return (
         <Container>
             <Row>
             {results.map((result, id) => (
-                <Col>
-                {console.log(id, type, result)}
-                <PokemonCard id={id} name={result.name} type={type} url={result.url}/>
+                <Col key={id}>
+                <PokemonCard id={id} name={result.name}  url={result.url}/>
                 </Col>
             ))}
             </Row>

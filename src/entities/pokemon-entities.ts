@@ -13,4 +13,7 @@ export interface PokemonState{
     count: number
     next?: string | null
     previous?: string | null
+    limit: number,
+    currentPage: number,
+    offset: number
 }
