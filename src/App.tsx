@@ -1,12 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
-import { useAppSelector } from './store/hooks';
+import { useAppDispatch, useAppSelector } from './store/hooks';
 import { selectAppState } from './store/reducers/app-reducer';
+import { getInitialData } from './store/thunks/pokemon-thunk';
+import { Spinner } from 'react-bootstrap';
+import { ViewState } from './entities/app-entities';
 
 function App() {
   const {viewState} = useAppSelector(selectAppState)
-
+  const dispatch = useAppDispatch()
   return (
     <div className="App">
       <header className="App-header">
@@ -22,6 +25,8 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={() => dispatch(getInitialData())}></button>
+        {viewState === ViewState.LOADING && <Spinner animation="border" variant="primary" />}
       </header>
     </div>
   );
