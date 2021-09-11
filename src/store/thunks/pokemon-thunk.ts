@@ -1,10 +1,11 @@
 import { getPokemons } from "../../api/api";
-import { setPokemon } from "../reducers/pokemon-reducer";
+import { PokemonsDTO } from "../../entities/api-entities";
+import { setPokemons } from "../reducers/pokemon-reducer";
 import { AppThunk } from "../store";
 
 
 
 export const getInitialData = () : AppThunk<Promise<void>> => async (dispatch) => {
-    const pokemonData = await getPokemons()
-    dispatch(setPokemon(pokemonData))
+    const pokemonData : PokemonsDTO = await getPokemons()
+    dispatch(setPokemons(pokemonData))
 }
