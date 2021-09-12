@@ -8,8 +8,6 @@ const initialState: PokemonState = {
   results: [],
   selected: null,
   count: 0,
-  next: null,
-  previous: null,
   limit: 12,
   currentPage: 1,
   offset: 0
@@ -20,11 +18,9 @@ export const pokemonSlice: Slice<PokemonState> = createSlice({
   initialState,
   reducers: {
     setPokemons: (state: PokemonState, action: PayloadAction<PokemonsDTO>) => {
-      const {results, next, previous} = action.payload
+      const {results} = action.payload
       state.results = results
       state.count = results.length
-      state.next = next
-      state.previous = previous
     },
     setPage: (state: PokemonState, action: PayloadAction<ChangePageParams>) => {
       state.currentPage = action.payload.newPage

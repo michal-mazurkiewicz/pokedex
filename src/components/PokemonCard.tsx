@@ -8,7 +8,7 @@ import { mapTypeToWariant } from "../utils/type-variant-mapper";
 interface PokemonProps {
     id: number;
     name: string;
-    url: string;
+    url: string; 
 }
 
 export function PokemonCard(props: PokemonProps) {
@@ -27,9 +27,8 @@ export function PokemonCard(props: PokemonProps) {
     }, [id, name, url]);
 
     const getThumbnailURL = (pokemon: PokemonDTO) => {
-        if(pokemon.id < 10){return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/00${pokemon.id}.png`}
-        if(pokemon.id > 9 && pokemon.id < 100){return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/0${pokemon.id}.png`}
-        return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.id}.png`
+        const id = (pokemon.id > 9 && pokemon.id < 100  ? `0${pokemon.id}` : pokemon.id < 10 ?  `00${pokemon.id}` : pokemon.id < 1000 ?  `${pokemon.id}` : `${pokemon.id}`)
+        return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`
     };
 
     return (

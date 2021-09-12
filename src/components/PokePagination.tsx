@@ -4,7 +4,7 @@ import { selectPokemonState } from "../store/reducers/pokemon-reducer";
 import { changePage } from "../store/thunks/pokemon-thunk";
 
 export function PokePagination() {
-  const {  count, limit, currentPage } = useAppSelector(selectPokemonState);
+  const { count, limit, currentPage } = useAppSelector(selectPokemonState);
   const dispatch = useAppDispatch();
 
   let items = [];
@@ -30,11 +30,11 @@ export function PokePagination() {
   }
 
   return (
-    <div>
+    <div style={{display: "flex", justifyContent:'center'}}>
       <Pagination size="sm">
         <Pagination.First disabled={currentPage === 1} onClick={() => handleChangePage(1)}/>
         <Pagination.Prev disabled={currentPage === 1} onClick={() => handleChangePage(currentPage - 1)}/>
-        {currentPage > 3  && items[0]}
+        {currentPage > 3 && items[0]}
         {currentPage > 3 && <Pagination.Ellipsis />}
         {items[currentPage - 3]}
         {items[currentPage - 2]}

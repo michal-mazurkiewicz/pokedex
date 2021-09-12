@@ -24,8 +24,12 @@ function App() {
       {error && <Alert variant={'danger'}>{error}</Alert>}
       <Container>
         <Row>
+        <Col></Col>
+        <Col md={3}>
+        <Search/>
           <PokePagination />
-          <Search/>
+          </Col>
+          <Col></Col>
         </Row>
         <Row>
           <Col></Col>

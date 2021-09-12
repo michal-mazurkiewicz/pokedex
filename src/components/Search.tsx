@@ -12,7 +12,7 @@ export const Search = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        getPokemons({ limit: 1000 }).then((res: PokemonsDTO) => {
+        getPokemons({ limit: 898 }).then((res: PokemonsDTO) => {
             setPokemonList(res.results)
         })
     }, [])
@@ -30,13 +30,12 @@ export const Search = () => {
         }else{
             dispatch(getInitialData())
         }
-       
     }
 
     return (
         <InputGroup size="sm" className="mb-3">
             <InputGroup.Text id="inputGroup-sizing-sm">Search</InputGroup.Text>
-            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" onChange={handleChange} />
+            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" onChange={handleChange} placeholder="Name"/>
         </InputGroup>
     )
 }
