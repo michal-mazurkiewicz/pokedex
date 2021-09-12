@@ -33,24 +33,20 @@ export function PokemonCard(props: PokemonProps) {
       key={id}
       text={whiteTypes.find((i) => i === type) ? "dark" : "white"}
       className="mb-2 poke-card text-center"
-      onClick={() => setOpen(!open)}
-      aria-controls="example-fade-text"
-      aria-expanded={open}
     >
       {pokemon &&
         <>
           {open && (
             <Card.Img
-              className="img-fluid"
+            onClick={() => setOpen(!open)}
               variant="top"
               src={getThumbnailURL(pokemon)}
             ></Card.Img>
           )}
-
           <Card.Header>
             <Card.Title>{name.toUpperCase()}</Card.Title>
           </Card.Header>
-          {!open && <PokemonBackCard pokemon={pokemon} />}
+          {!open && <PokemonBackCard pokemon={pokemon} onClick={() => setOpen(!open)}/>}
 
           <Card.Footer >
             <PokemonDetailsModal pokemon={pokemon}/>

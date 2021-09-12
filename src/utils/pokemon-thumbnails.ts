@@ -16,3 +16,7 @@ export const getThumbnailURL = (pokemon: PokemonDTO) => {
 export const getTypeThumbnail = (type : string) => {
     return images.find(i => i.type === type)?.src
 }
+
+export const getStatIcon = (stat: string) => {
+  return images.find(i => i.type === stat)?.src
+}

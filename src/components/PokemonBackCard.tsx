@@ -1,12 +1,16 @@
 import { Container, Row, Col } from "react-bootstrap";
-import { PokemonProps } from "../entities/pokemon-entities";
+import { PokemonDTO } from "../entities/api-entities";
 import { PokemonStats } from "./pokemon-details/PokemonStats";
 
+interface BackCardProps{
+    pokemon: PokemonDTO
+    onClick: () => void
+}
 
-export const PokemonBackCard = (props: PokemonProps) => {
-    const {pokemon} = props
+export const PokemonBackCard = (props: BackCardProps) => {
+    const {pokemon, onClick} = props
     return(
-    <Container>
+    <Container onClick={onClick}>
         <Col>
         <Row>
         </Row>
