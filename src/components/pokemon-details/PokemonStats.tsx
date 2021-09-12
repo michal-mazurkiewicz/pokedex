@@ -13,9 +13,9 @@ export const PokemonStats = (props: StatsProps) => {
   return (
     <>
       {!details && <div>{`Weight: ${pokemon?.weight} g`}</div>}
-      {pokemon?.stats.map((f) => (
-        <>
-          {details ? (
+      {pokemon?.stats.map((f, i) => (
+        <div key={i}>
+          {details ? ( 
             <div className="d-flex align-items-center">
               <Image
               src={getStatIcon(f.stat.name)}
@@ -27,7 +27,7 @@ export const PokemonStats = (props: StatsProps) => {
           ) : (
             <div>{`${firstLetterUpperCase(f.stat.name)}:${f.base_stat}`}</div>
           )}
-        </>
+        </div>
       ))}
     </>
   );

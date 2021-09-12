@@ -9,8 +9,8 @@ export const PokemonAbilities = (props: PokemonProps) => {
     <Col>
     <div className="section-details d-flex flex-column align-content-stretch align-items-center justify-content-center">
       Abilities:
-      {pokemon?.abilities.map((a) => (
-        <div>{firstLetterUpperCase(a.ability?.name)}</div>
+      {pokemon?.abilities.map((a,i) => (
+        <div key={i}>{firstLetterUpperCase(a.ability?.name)}</div>
       ))}
     </div>
     </Col>

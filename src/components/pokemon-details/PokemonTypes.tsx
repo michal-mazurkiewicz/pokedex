@@ -9,8 +9,9 @@ export const PokemonTypes = (props: PokemonProps) => {
     <Col className="d-flex">
     <div className="section-details d-flex align-items-center flex-grow-1 align-content-stretch align-items-center justify-content-center">
         Types:{" "}
-        {pokemon?.types.map((t) => (
+        {pokemon?.types.map((t,i) => (
           <Image
+            key={i}
             style={{ marginRight: "10px", marginLeft: "10px" }}
             src={getTypeThumbnail(t.type.name)}
             width={25}

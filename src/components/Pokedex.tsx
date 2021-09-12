@@ -12,7 +12,7 @@ export function Pokedex() {
                 {results.map((result, id) => {
                     if (id >= offset && id < offset + limit) {
                         return (
-                            <Col key={id}>
+                            <Col key={id} className="d-flex justify-content-center">
                                 <PokemonCard id={id} name={result.name} url={result.url} />
                             </Col>
                         );

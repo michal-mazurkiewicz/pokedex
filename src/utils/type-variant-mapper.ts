@@ -21,6 +21,6 @@ const map : any = {
 }
 
 
-export const mapTypeToWariant = (pokemonType: any) : string => {
+export const mapTypeToWariant = (pokemonType: string) : string => {
     return map[pokemonType]
 }

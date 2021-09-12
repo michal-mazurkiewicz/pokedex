@@ -43,7 +43,7 @@ function PokedexModal(props: any) {
             <Row className="m-1 d-flex justify-content-evenly">
             {['Strengths', 'Weakness'].map((l) => {
               return(
-                <PokemonOpponents label={l} type={type}/>
+                <PokemonOpponents key={l} label={l} type={type}/>
               )
             })}
             </Row>

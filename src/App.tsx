@@ -9,6 +9,16 @@ import { selectAppState } from "./store/reducers/app-reducer";
 import { ViewState } from "./entities/app-entities";
 import { PokePagination } from "./components/pokemon-list/PokePagination";
 import { Search } from "./components/pokemon-list/Search";
+import { Provider } from 'react-redux';
+import store from './store/store';
+
+const AppWrapper = () => {
+  return(
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  )
+}
 
 function App() {
   const dispatch = useAppDispatch();
@@ -31,7 +41,7 @@ function App() {
         </Row>
         <Row>
           <Col md="auto">
-            {viewState === ViewState.SUCCESS && <Pokedex />}
+            {viewState === ViewState.SUCCESS && !error && <Pokedex />}
           </Col>
         </Row>
       </Container>
@@ -39,4 +49,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppWrapper;
