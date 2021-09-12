@@ -7,6 +7,7 @@ import { PokemonStats } from "./PokemonStats";
 import { PokemonTypes } from "./PokemonTypes";
 import pokeball from '../../assets/pictures/pokeball.svg'
 import { PokemonProps } from "../../entities/pokemon-entities";
+import { PokemonOpponents } from "./PokemonOpponents";
 
 function PokedexModal(props: any) {
 
@@ -16,7 +17,7 @@ function PokedexModal(props: any) {
     
     return (
       <Modal {...props} aria-labelledby="contained-modal-title-vcenter" className="text-white" >
-        <Modal.Header closeButton className="bg-danger border-danger">
+        <Modal.Header closeButton className="bg-danger border-dark">
           <Modal.Title id="contained-modal-title-vcenter" >
             {pokemon?.name.toUpperCase()}
           </Modal.Title>
@@ -28,10 +29,10 @@ function PokedexModal(props: any) {
                 <Image src={getThumbnailURL(pokemon!)} className={thumbnailBackground} />
               </Col> 
             </Row>
-            <Row className="m-1 d-flex justify-content-evenly">
-            <Col className="d-flex">
-            <div className="section-details d-flex justify-content-evenly flex-wrap">
-                <PokemonStats pokemon={pokemon}/>
+            <Row className="m-1 d-flex">
+            <Col className="d-flex align-content-stretch">
+            <div className="section-details d-flex justify-content-evenly flex-grow-1 flex-wrap">
+                <PokemonStats pokemon={pokemon} details={true}/>
               </div>
             </Col>
             </Row>
@@ -40,9 +41,11 @@ function PokedexModal(props: any) {
               <PokemonAbilities pokemon={pokemon} />
             </Row>
             <Row className="m-1 d-flex justify-content-evenly">
-              <Col className="mt-3 d-flex align-items-center justify-content-evenly">
-              <Image src="https://upload.wikimedia.org/wikipedia/commons/6/63/PlayStation_Directional_button.svg" height="130rem"/>
-              </Col>
+            {['Strengths', 'Weakness'].map((l) => {
+              return(
+                <PokemonOpponents label={l} type={type}/>
+              )
+            })}
             </Row>
           </Container>  
         </Modal.Body>
