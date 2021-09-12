@@ -1,6 +1,8 @@
 .poke-card{
-   width: 12rem; 
-   height: 19rem; 
+   width: 12rem;
+   height: 19rem;
+   border: gold solid 3px !important;
+   border-radius: 20px !important;
 };
 
 .poke-card:hover{
@@ -60,4 +62,10 @@ code {
 
 .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl{
   padding: 0;
+}
+
+.details-img > img {
+  border: 15px solid #d9d8d9;
+  border-radius: 5px;
+  border-bottom-left-radius: 25px;
 }

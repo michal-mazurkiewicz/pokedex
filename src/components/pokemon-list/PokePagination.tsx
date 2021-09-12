@@ -1,7 +1,7 @@
 import { Pagination } from "react-bootstrap";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { selectPokemonState } from "../store/reducers/pokemon-reducer";
-import { changePage } from "../store/thunks/pokemon-thunk";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { selectPokemonState } from "../../store/reducers/pokemon-reducer";
+import { changePage } from "../../store/thunks/pokemon-thunk";
 
 export function PokePagination() {
   const { count, limit, currentPage } = useAppSelector(selectPokemonState);

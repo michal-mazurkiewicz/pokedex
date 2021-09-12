@@ -14,6 +14,7 @@ const map : any = {
     poison: 'poison',
     ground: 'ground',
     flying: 'flying',
+    fighting: 'fighting',
     psychic: 'psychic',
     bug: 'bug',
     rock: 'rock',

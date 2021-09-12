@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { ChangePageParams, PokemonsDTO } from "../../entities/api-entities";
+import { ChangePageParams, PokemonDTO, PokemonsDTO } from "../../entities/api-entities";
 import { PokemonState } from "../../entities/pokemon-entities";
 import { RootState } from "../store";
 
@@ -28,10 +28,14 @@ export const pokemonSlice: Slice<PokemonState> = createSlice({
     },
     setLimit: (state: PokemonState, action: PayloadAction<number>) => {
       state.limit = action.payload
-    }
+    },
+    setSelected: (state: PokemonState, action: PayloadAction<PokemonDTO | null>) => {
+      state.selected = action.payload
+    },
+
   },
 });
 
-export const { setPokemons, setPage } = pokemonSlice.actions;
+export const { setPokemons, setPage, setSelected } = pokemonSlice.actions;
 export const selectPokemonState = (state: RootState) => state.pokemonReducer;
 export default pokemonSlice.reducer;

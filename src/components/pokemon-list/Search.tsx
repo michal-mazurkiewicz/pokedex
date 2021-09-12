@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { FormControl, InputGroup } from "react-bootstrap"
-import { getPokemons } from "../api/api"
-import { PokemonsDTO, Result } from "../entities/api-entities"
-import { useAppDispatch } from "../store/hooks"
-import {  setPage, setPokemons } from "../store/reducers/pokemon-reducer"
-import { getInitialData } from "../store/thunks/pokemon-thunk"
+import { getPokemons } from "../../api/api"
+import { PokemonsDTO, Result } from "../../entities/api-entities"
+import { useAppDispatch } from "../../store/hooks"
+import {  setPage, setPokemons } from "../../store/reducers/pokemon-reducer"
+import { getInitialData } from "../../store/thunks/pokemon-thunk"
 
 
 export const Search = () => {

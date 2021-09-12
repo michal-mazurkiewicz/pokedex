@@ -7,8 +7,9 @@ import { Topbar } from "./components/Topbar";
 import { Pokedex } from "./components/Pokedex";
 import { selectAppState } from "./store/reducers/app-reducer";
 import { ViewState } from "./entities/app-entities";
-import { PokePagination } from "./components/PokePagination";
-import { Search } from "./components/Search";
+import { PokePagination } from "./components/pokemon-list/PokePagination";
+import { Search } from "./components/pokemon-list/Search";
+import { PokemonDetailsModal } from "./components/pokemon-details/PokemonDetailsModal";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -39,6 +40,7 @@ function App() {
           <Col></Col>
         </Row>
       </Container>
+      <PokemonDetailsModal/>
     </Container>
   );
 }

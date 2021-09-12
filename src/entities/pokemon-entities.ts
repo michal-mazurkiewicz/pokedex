@@ -15,3 +15,7 @@ export interface PokemonState{
     currentPage: number,
     offset: number
 }
+
+export interface PokemonProps{
+    pokemon: PokemonDTO
+}

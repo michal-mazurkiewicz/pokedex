@@ -11,7 +11,7 @@ export interface PokemonsDTO{
 }
 
 export interface Ability{
-    abiliti: {
+    ability: {
         name: string
         url: string
     },
@@ -50,7 +50,7 @@ export interface TypeObject{
 export interface PokemonDTO{
     name: string
     id: number
-    abilities: Array<Ability>
+    abilities: Array<Ability> 
     base_experience: number
     forms: Array<Form>
     stats: Array<Stat>
