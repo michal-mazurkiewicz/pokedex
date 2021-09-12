@@ -1,7 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { PokemonProps } from "../entities/pokemon-entities";
-import { PokemonAbilities } from "./pokemon-details/PokemonAbilities";
-import { PokemonTypes } from "./pokemon-details/PokemonTypes";
+import { PokemonStats } from "./pokemon-details/PokemonStats";
 
 
 export const PokemonBackCard = (props: PokemonProps) => {
@@ -11,8 +10,8 @@ export const PokemonBackCard = (props: PokemonProps) => {
         <Col>
         <Row>
         </Row>
-        <PokemonTypes pokemon={pokemon}/>
-        <PokemonAbilities pokemon={pokemon}/>
+        <div><b>Statistics</b>:</div>
+        <PokemonStats pokemon={pokemon}/>
         </Col>
     </Container>)
 }

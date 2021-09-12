@@ -17,32 +17,28 @@ function App() {
 
   useEffect(() => {
     dispatch(getInitialData());
-  }, [dispatch])
+  }, [])
 
   return (
     <Container fluid>
       <Topbar />
       {error && <Alert variant={'danger'}>{error}</Alert>}
       <Container>
-        <Row>
-        <Col></Col>
-        <Col md={3}>
-        <Search/>
+        <Row className="d-flex justify-content-center">
+        <Col md={4}>
+          <Search/>
           <PokePagination />
           </Col>
-          <Col></Col>
         </Row>
         <Row>
-          <Col></Col>
           <Col md="auto">
             {viewState === ViewState.SUCCESS && <Pokedex />}
           </Col>
-          <Col></Col>
         </Row>
       </Container>
-      <PokemonDetailsModal/>
+      <PokemonDetailsModal/> 
     </Container>
   );
 }
-
+ 
 export default App;

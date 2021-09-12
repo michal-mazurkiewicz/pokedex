@@ -1,14 +1,17 @@
-import { Button, Col, Container, Image, Modal, Row } from "react-bootstrap";
+import { Col, Container, Image, Modal, Row } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectPokemonState, setSelected } from "../../store/reducers/pokemon-reducer";
 import { getThumbnailURL } from "../../utils/pokemon-thumbnails";
 import { mapTypeToWariant } from "../../utils/type-variant-mapper";
+import { PokemonAbilities } from "./PokemonAbilities";
+import { PokemonStats } from "./PokemonStats";
 import { PokemonTypes } from "./PokemonTypes";
 
-function MydModalWithGrid(props: any) {
+function PokedexModal(props: any) {
     const {selected} = useAppSelector(selectPokemonState)
     const type = selected?.types[0].type.name
     const thumbnailBackground = `bg-${mapTypeToWariant(type)}`
+    
     return (
       <Modal {...props} aria-labelledby="contained-modal-title-vcenter" className="text-white" >
         <Modal.Header closeButton className="bg-danger border-danger">
@@ -21,21 +24,25 @@ function MydModalWithGrid(props: any) {
             <Row className="m-1 d-flex justify-content-evenly">
               <Col xs={12} md={7} className="details-img">
                 <Image src={getThumbnailURL(selected!)} className={thumbnailBackground} />
-              </Col>
-              <Col xs={6} md={5} className="bg-steel">
-                  <h4>Stats:</h4>
-                <div>{`Weight: ${selected?.weight} g`}</div>
-                {selected?.stats.map(f => <div>{`${f.stat.name[0].toUpperCase()}${f.stat.name.substr(1)}: ${f.base_stat}`}</div>)}
-              </Col>
+              </Col> 
             </Row>
-  
             <Row className="m-1 d-flex justify-content-evenly">
-              <PokemonTypes pokemon={selected}/>
-              <Col xs={6} md={5} className="bg-steel">
-              {selected?.abilities.map(f => <Row>{f.ability.name}</Row>)}
+            <Col className="d-flex">
+            <div className="section-details d-flex justify-content-evenly flex-wrap">
+                <PokemonStats pokemon={selected}/>
+              </div>
+            </Col>
+            </Row>
+            <Row className="m-1 d-flex justify-content-evenly">
+              <PokemonTypes pokemon={selected}/> 
+              <PokemonAbilities pokemon={selected} />
+            </Row>
+            <Row className="m-1 d-flex justify-content-evenly">
+              <Col className="mt-3 d-flex align-items-center justify-content-evenly">
+              <Image src="https://upload.wikimedia.org/wikipedia/commons/6/63/PlayStation_Directional_button.svg" height="130rem"/>
               </Col>
             </Row>
-          </Container>
+          </Container>  
         </Modal.Body>
       </Modal>
     );
@@ -51,7 +58,7 @@ export const PokemonDetailsModal = () => {
 
   return (
     <>
-      {selected && (<MydModalWithGrid show={!!selected} onHide={() => handleCloseModal()} />)}
+      {selected && (<PokedexModal show={!!selected} onHide={() => handleCloseModal()} />)}
     </>
   );
 }

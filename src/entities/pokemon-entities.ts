@@ -17,5 +17,5 @@ export interface PokemonState{
 }
 
 export interface PokemonProps{
-    pokemon: PokemonDTO
+    pokemon: PokemonDTO | null | undefined
 }

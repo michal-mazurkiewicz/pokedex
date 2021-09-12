@@ -23,7 +23,7 @@ const images = [
     {src: ground, type: 'ground'},
     {src: ice, type: 'ice'},
     {src: normal, type: 'normal'},
-    {src: poison, type: 'poison'},
+    {src: poison, type: 'poison'}, 
     {src: psychic, type: 'psychic'},
     {src: rock, type: 'rock'},
     {src: steel, type: 'steel'},

@@ -1,10 +1,10 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { useAppSelector } from "../store/hooks";
-import { selectPokemonState } from "../store/reducers/pokemon-reducer";
+import { selectPaginationSettings } from "../store/reducers/pokemon-reducer";
 import { PokemonCard } from "./PokemonCard";
 
 export function Pokedex() {
-    const { results, limit, offset } = useAppSelector(selectPokemonState);
+    const { results, limit, offset } = useAppSelector(selectPaginationSettings);
     return (
         <Container>
             <Row>

@@ -1,16 +1,13 @@
 import { Col, Image } from "react-bootstrap";
-import { PokemonDTO } from "../../entities/api-entities";
+import { PokemonProps } from "../../entities/pokemon-entities";
 import { getTypeThumbnail } from "../../utils/pokemon-thumbnails";
 
-interface PokemonTypesProps {
-  pokemon: PokemonDTO | null | undefined;
-}
 
-export const PokemonTypes = (props: PokemonTypesProps) => {
+export const PokemonTypes = (props: PokemonProps) => {
   const { pokemon } = props;
   return (
-    <>
-      <Col className="d-flex align-items-center">
+    <Col className="d-flex">
+    <div className="section-details d-flex align-items-center flex-grow-1 align-content-stretch align-items-center justify-content-center">
         Types:{" "}
         {pokemon?.types.map((t) => (
           <Image
@@ -20,7 +17,7 @@ export const PokemonTypes = (props: PokemonTypesProps) => {
             height={25}
           />
         ))}
-      </Col>
-    </>
+    </div>
+    </Col>
   );
 };

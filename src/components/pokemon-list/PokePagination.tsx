@@ -11,9 +11,7 @@ export function PokePagination() {
   let noPages = Math.ceil(count / limit);
 
   const handleChangePage = async (newPage: number) => {
-    const offset = newPage === 1 ? 0 : (newPage - 1) * limit;
-    const params = { offset, limit, newPage };
-    await dispatch(changePage(params));
+    await dispatch(changePage(newPage));
   };
 
   for (let number = 1; number <= noPages; number++) {

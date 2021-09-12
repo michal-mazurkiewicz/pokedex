@@ -38,4 +38,11 @@ export const pokemonSlice: Slice<PokemonState> = createSlice({
 
 export const { setPokemons, setPage, setSelected } = pokemonSlice.actions;
 export const selectPokemonState = (state: RootState) => state.pokemonReducer;
+export const selectPaginationSettings = (state: RootState) => {return {
+  currentPage: state.pokemonReducer.currentPage,
+  limit: state.pokemonReducer.limit,
+  count: state.pokemonReducer.count,
+  results: state.pokemonReducer.results,
+  offset: state.pokemonReducer.offset,
+}}
 export default pokemonSlice.reducer;

@@ -6,9 +6,20 @@
 };
 
 .poke-card:hover{
-  width: 12.3rem;
+  width: 12.2rem;
   cursor: pointer;
 };
+
+.btn-poke:hover{
+  width: 38px;
+  height: 38px;
+}
+
+.section-details{
+  background-color: rgba(128, 128, 128, 0.719);
+  border-radius: 20px;
+  margin-top: 1rem;
+}
 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
@@ -23,7 +34,7 @@ $ground:  #E59866;
 $flying:  #FDEBD0;
 $psychic: #CCCCFF;
 $bug:     #0a6e70;
-$rock:    #FFBF00;
+$rock:    #cec9bc;
 
 $poke-colors:(
   "normal":     $normal,

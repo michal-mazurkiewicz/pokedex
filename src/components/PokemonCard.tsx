@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { Button, Card, Spinner, Image, Fade } from "react-bootstrap";
+import { Button, Card, Spinner, Image } from "react-bootstrap";
 import { getPokemon } from "../api/api";
-import { getThumbnailURL, getTypeThumbnail } from "../utils/pokemon-thumbnails";
+import { getThumbnailURL } from "../utils/pokemon-thumbnails";
 import { PokemonDTO } from "../entities/api-entities";
 import { ViewState } from "../entities/app-entities";
 import { mapTypeToWariant } from "../utils/type-variant-mapper";
 import { PokemonBackCard } from "./PokemonBackCard";
 import { useAppDispatch } from "../store/hooks";
 import { selectPokemon } from "../store/thunks/pokemon-thunk";
+import pokeball from '../assets/pictures/pokeball.svg'
+import { PokemonDetailsModal } from "./pokemon-details/PokemonDetailsModal";
 
 interface PokemonProps {
   id: number;
@@ -31,14 +33,18 @@ export function PokemonCard(props: PokemonProps) {
       setVariant(mapTypeToWariant(res?.types[0].type.name));
       setViewState(ViewState.SUCCESS);
     });
-  }, [id, name, url]);
+  },[props]);
 
+  const handleOpenModal = (event : any) => {
+    event.preventDefault()
+    dispatch(selectPokemon(pokemon))
+  }
 
   return (
     <Card
       bg={type}
       key={id}
-      text={whiteTypes.find((i) => i == type) ? "dark" : "white"}
+      text={whiteTypes.find((i) => i === type) ? "dark" : "white"}
       className="mb-2 poke-card text-center"
       onClick={() => setOpen(!open)}
       aria-controls="example-fade-text"
@@ -63,9 +69,9 @@ export function PokemonCard(props: PokemonProps) {
           </Card.Header>
           {!open && <PokemonBackCard pokemon={pokemon} />}
 
-          <Card.Footer>
-            <Button variant="primary" onClick={() => {dispatch(selectPokemon(pokemon))}}>
-              Details
+          <Card.Footer >
+            <Button style={{backgroundColor: 'transparent', border: '0'}} onClick={(event) => handleOpenModal(event)}>
+              <Image className="btn-poke" src={pokeball} width="30px" height="30px"/>
             </Button>
           </Card.Footer>
         </>
