@@ -1,6 +1,6 @@
 import { getPokemons } from "../../api/api";
-import { PokemonDTO, PokemonsDTO } from "../../entities/api-entities";
-import { setPage, setPokemons, setSelected } from "../reducers/pokemon-reducer";
+import { PokemonsDTO } from "../../entities/api-entities";
+import { setPage, setPokemons } from "../reducers/pokemon-reducer";
 import { AppThunk } from "../store";
 
 
@@ -21,8 +21,4 @@ export const changePage = (newPage: number): AppThunk<Promise<void>> => async (d
     const offset = newPage === 1 ? 0 : (newPage - 1) * limit;
     const params = { offset, limit, newPage };
     dispatch(setPage(params))
-}
-
-export const selectPokemon = (pokemon?: PokemonDTO): AppThunk => async (dispatch) => {
-    dispatch(setSelected(pokemon))
 }

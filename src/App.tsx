@@ -9,7 +9,6 @@ import { selectAppState } from "./store/reducers/app-reducer";
 import { ViewState } from "./entities/app-entities";
 import { PokePagination } from "./components/pokemon-list/PokePagination";
 import { Search } from "./components/pokemon-list/Search";
-import { PokemonDetailsModal } from "./components/pokemon-details/PokemonDetailsModal";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -17,7 +16,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getInitialData());
-  }, [])
+  }, [dispatch])
 
   return (
     <Container fluid>
@@ -36,7 +35,6 @@ function App() {
           </Col>
         </Row>
       </Container>
-      <PokemonDetailsModal/> 
     </Container>
   );
 }

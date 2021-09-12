@@ -9,7 +9,6 @@ export enum Type{
 export interface PokemonState{
     pokemons: Array<PokemonDTO>
     results: Array<Result>
-    selected?: PokemonDTO | null
     count: number
     limit: number,
     currentPage: number,
