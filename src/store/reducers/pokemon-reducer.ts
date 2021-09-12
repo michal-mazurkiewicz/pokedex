@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import { ChangePageParams, PokemonsDTO } from "../../entities/api-entities";
+import { ChangePageParams, PokemonsDTO, Result } from "../../entities/api-entities";
 import { PokemonState } from "../../entities/pokemon-entities";
 import { RootState } from "../store";
 
 const initialState: PokemonState = {
   pokemons: [],
+  temp: [],
   results: [],
   count: 0,
   limit: 12,
@@ -25,13 +26,12 @@ export const pokemonSlice: Slice<PokemonState> = createSlice({
       state.currentPage = action.payload.newPage
       state.offset = action.payload.offset
     },
-    setLimit: (state: PokemonState, action: PayloadAction<number>) => {
-      state.limit = action.payload
+    setTemp: (state: PokemonState, action: PayloadAction<Result[]>) => {
+      state.temp = action.payload
     }
-
   },
 });
 
-export const { setPokemons, setPage, setSelected } = pokemonSlice.actions;
+export const { setPokemons, setPage, setTemp } = pokemonSlice.actions;
 export const selectPokemonState = (state: RootState) => state.pokemonReducer;
 export default pokemonSlice.reducer;

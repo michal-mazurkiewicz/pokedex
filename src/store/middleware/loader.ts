@@ -1,11 +1,8 @@
 import { ViewState } from "../../entities/app-entities";
 import { setError, setViewState } from "../reducers/app-reducer";
-
-
 let asyncStack = 0;
 
-export const loader = (state: any) => (next: any) => async (action: any) => {
-    console.log("STATE", state)
+export const loader = () => (next: any) => async (action: any) => {
     if(typeof action === 'function'){
         try {
             const returnValue = next(action)

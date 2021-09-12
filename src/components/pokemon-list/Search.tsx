@@ -1,34 +1,26 @@
-import { useEffect, useState } from "react"
 import { FormControl, InputGroup } from "react-bootstrap"
-import { getPokemons } from "../../api/api"
-import { PokemonsDTO, Result } from "../../entities/api-entities"
-import { useAppDispatch } from "../../store/hooks"
-import {  setPage, setPokemons } from "../../store/reducers/pokemon-reducer"
-import { getInitialData } from "../../store/thunks/pokemon-thunk"
+import {  Result } from "../../entities/api-entities"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
+import {  selectPokemonState, setPage, setPokemons } from "../../store/reducers/pokemon-reducer"
 
 
 export const Search = () => {
-    const [pokemonList, setPokemonList] = useState<Array<Result>>([])
-    const dispatch = useAppDispatch()
-
-    useEffect(() => {
-        getPokemons({ limit: 898 }).then((res: PokemonsDTO) => {
-            setPokemonList(res.results)
-        })
-    }, [])
+    const {temp} = useAppSelector(selectPokemonState)
+    const dispatch = useAppDispatch() 
 
     const filterPokemons = (keyword: string) => {
-        return pokemonList.filter((pokemon) => pokemon.name.toLowerCase().includes(keyword.toLowerCase()))
+        return temp.filter((pokemon : Result) => pokemon.name.toLowerCase().includes(keyword.toLowerCase()))
     }
 
     const handleChange = (event: any) => {
-        const keyword  = event.target.value
-        if (keyword || keyword.lenght > 2) {
+        const keyword : string = event.target.value
+        if (keyword && keyword.length >= 2) {
             const filteredList = filterPokemons(event.target.value)
             dispatch(setPage({offset: 0, newPage: 1}))
             dispatch(setPokemons({ results: filteredList, count: filteredList.length }))
         }else{
-            dispatch(getInitialData())
+            dispatch(setPage({offset: 0, newPage: 1}))
+            dispatch(setPokemons({ results: temp, count: temp.length }))
         }
     }
 
