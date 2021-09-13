@@ -5,11 +5,11 @@ import { selectPokemonState } from "../store/reducers/pokemon-reducer";
 import { PokemonCard } from "./PokemonCard";
 
 export function Pokedex() {
-    const { results, limit, offset } = useAppSelector(selectPokemonState);
+    const { filtered, limit, offset } = useAppSelector(selectPokemonState);
     return (
         <Container>
             <Row className="mb-6">
-                {results.map((result, id) => {
+                {filtered.map((result, id) => {
                     if (id >= offset && id < offset + limit) {
                         return (
                             <Col key={id} className="d-flex justify-content-center">

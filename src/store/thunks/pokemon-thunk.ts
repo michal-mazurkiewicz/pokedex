@@ -1,20 +1,16 @@
 import { getPokemons } from "../../api/api";
 import { PokemonsDTO } from "../../entities/api-entities";
-import { setPage, setPokemons, setTemp } from "../reducers/pokemon-reducer";
+import { setPage, setPokemons, setFiltered } from "../reducers/pokemon-reducer";
 import { AppThunk } from "../store";
 
 
 
 export const getInitialData = (): AppThunk<Promise<void>> => async (dispatch) => {
-    const pokemonData: PokemonsDTO = await getPokemons({ limit: 898 })
-    dispatch(setPokemons(pokemonData))
-    dispatch(setTemp(pokemonData.results))
+    const pokemonsData: PokemonsDTO = await getPokemons({ limit: 898 })
+    dispatch(setPokemons(pokemonsData))
+    dispatch(setFiltered(pokemonsData))
 }
 
-export const getPokemon = (): AppThunk<Promise<void>> => async (dispatch) => {
-    const pokemonData: PokemonsDTO = await getPokemons({ limit: 898 })
-    dispatch(setPokemons(pokemonData))
-}
 
 
 export const changePage = (newPage: number): AppThunk<Promise<void>> => async (dispatch, getState) => {

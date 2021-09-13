@@ -7,9 +7,8 @@ export enum Type{
 }
 
 export interface PokemonState{
-    pokemons: Array<PokemonDTO>
-    results: Array<Result>
-    temp: Array<Result>
+    pokemons: Array<Result>
+    filtered: Array<Result>
     count: number
     limit: number,
     currentPage: number,

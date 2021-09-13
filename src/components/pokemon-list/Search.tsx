@@ -1,15 +1,15 @@
 import { FormControl, InputGroup } from "react-bootstrap"
 import {  Result } from "../../entities/api-entities"
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
-import {  selectPokemonState, setPage, setPokemons } from "../../store/reducers/pokemon-reducer"
+import {  selectPokemonState, setFiltered, setPage } from "../../store/reducers/pokemon-reducer"
 
 
 export const Search = () => {
-    const {temp} = useAppSelector(selectPokemonState)
+    const {pokemons} = useAppSelector(selectPokemonState)
     const dispatch = useAppDispatch() 
 
     const filterPokemons = (keyword: string) => {
-        return temp.filter((pokemon : Result) => pokemon.name.toLowerCase().includes(keyword.toLowerCase()))
+        return pokemons.filter((pokemon : Result) => pokemon.name.toLowerCase().includes(keyword.toLowerCase()))
     }
 
     const handleChange = (event: any) => {
@@ -17,10 +17,10 @@ export const Search = () => {
         if (keyword && keyword.length >= 2) {
             const filteredList = filterPokemons(event.target.value)
             dispatch(setPage({offset: 0, newPage: 1}))
-            dispatch(setPokemons({ results: filteredList, count: filteredList.length }))
+            dispatch(setFiltered({ results: filteredList, count: filteredList.length }))
         }else{
             dispatch(setPage({offset: 0, newPage: 1}))
-            dispatch(setPokemons({ results: temp, count: temp.length }))
+            dispatch(setFiltered({ results: pokemons, count: pokemons.length }))
         }
     }
 
