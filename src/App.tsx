@@ -20,7 +20,7 @@ const AppWrapper = () => {
   )
 }
 
-function App() {
+export function App() {
   const dispatch = useAppDispatch();
   const { viewState, error } = useAppSelector(selectAppState)
 
@@ -39,8 +39,9 @@ function App() {
           <PokePagination />
           </Col>
         </Row>
-        <Row>
+        <Row className="d-flex justify-content-center">
           <Col md="auto">
+            {viewState === ViewState.LOADING && <Spinner animation="grow" variant="danger" />}
             {viewState === ViewState.SUCCESS && !error && <Pokedex />}
           </Col>
         </Row>

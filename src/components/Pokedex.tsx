@@ -8,6 +8,7 @@ export function Pokedex() {
     const { filtered, limit, offset } = useAppSelector(selectPokemonState);
     return (
         <Container>
+            {!filtered.length && <Col><div>No results</div></Col>}
             <Row className="mb-6">
                 {filtered.map((result, id) => {
                     if (id >= offset && id < offset + limit) {
