@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./assets/styles/App.scss";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { getInitialData } from "./store/thunks/pokemon-thunk";
-import { Alert, Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
 import { Topbar } from "./components/Topbar";
 import { Pokedex } from "./components/Pokedex";
 import { selectAppState } from "./store/reducers/app-reducer";
