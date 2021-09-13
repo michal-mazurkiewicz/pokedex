@@ -24,7 +24,8 @@ export function PokemonCard(props: PokemonProps) {
     getPokemon(url).then((res: PokemonDTO) => {
       setPokemon(res);
       setVariant(mapTypeToWariant(res?.types[0].type.name));
-    });
+    }).catch((err) => {console.log('Error:', err.message)} );
+
   }, [id, name, url]);
 
   return (

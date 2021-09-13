@@ -12,9 +12,9 @@ export const loader = () => (next: any) => async (action: any) => {
                 await returnValue
                 asyncStack--
                 if(asyncStack === 0) next(setViewState(ViewState.SUCCESS))
-                return
+                return returnValue
             }
-            return
+            return returnValue
         } catch (error) {
             asyncStack--
             next(setError(error))

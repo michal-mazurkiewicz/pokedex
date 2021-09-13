@@ -15,7 +15,7 @@ export const appSlice: Slice<AppState> = createSlice({
             state.viewState = action.payload
         },
         setError: (state: AppState, action: PayloadAction<Error>) => {
-            state.error = action.payload.message
+            state.error = 'Error: ' + action.payload.message
         }
     }
 })
